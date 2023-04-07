@@ -1,0 +1,19 @@
+numbers = {
+    "1":"One",
+    "2":"Two",
+    "3":"Three",
+    "4":"Four"
+}
+key = input("Phone: ")
+output = ""
+length = len(key) #ex 5 inputs: its length of 5 but 01234 indexes no 5th index hence length - 1
+for i in key:
+    if(int(key[length - 1]) > len(numbers)):
+        number_name = input("Enter the numbers letter representation: ")
+        numbers[key[length-1]] = number_name
+        output += numbers.get(i, number_name) + " "
+    else:
+        output += numbers.get(i, " ") + " "
+
+
+print(output)

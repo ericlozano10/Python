@@ -1,0 +1,14 @@
+numbers = [1,5,4,5,8,6,3,7,9]
+key  = input("Plese enter the number you are looking for: ")
+found = False
+# count = 0
+for i in range(len(numbers)):
+    if(numbers[i] == int(key)):
+        # count += 1
+        print(f'Found {key} at these positions: {i}')
+        found = True
+
+if(found == False):
+    print(f'The number {key} is not in the list.')
+# else:
+#     print(f'Found {key} this many times: {count}')

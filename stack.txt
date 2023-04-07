@@ -1,0 +1,44 @@
+class Stack():
+    def create_stack(self):
+        stack = []
+        return stack
+    def empty(self, stack):
+        if(len(stack) == 0):
+            print(f'Stack Is Empty. ')
+            return True
+        else:
+            print(f'Stack is not empty. ')
+        return False
+
+    def __sizeof__(self, stack):
+        return len(stack)
+
+    def push(self, stack, element):
+        stack.append(element)
+        print(f'pushed item: {element}')
+
+    def pop(self, stack):
+        if(self.empty(stack) == False):
+            elem = stack.pop()
+            print(f'Popped Element: {elem}')
+        else:
+            print(f'Stack is empty cannot pop. ')
+            
+    def peek(self, stack):
+        size = self.__sizeof__(stack)
+        if(self.empty(stack) == True):
+            print(f'Stack is empty cannot peek. ')
+        else:
+            for i in range(size):
+                if(i == size - 1):
+                    return stack[i]
+
+obj = Stack()
+s = obj.create_stack()
+obj.empty(s)
+obj.push(s, 10)
+obj.push(s, 20)
+elem = obj.peek(s)
+print(f'peeked: {elem}')
+obj.pop(s)
+obj.empty(s)

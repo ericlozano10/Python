@@ -1,0 +1,28 @@
+import random
+
+def createArr():
+    arr = [None] * 10
+    i = 0
+    while i < 10:
+        arr[i] = random.randint(1,10)
+        i = i + 1
+    print(arr)
+    return arr
+
+def bubbleSort(arr):
+    for i in range(len(arr)):
+        for j in range(0, len(arr) - i - 1):
+            if(arr[j] > arr[j + 1]):
+                temp = arr[j]
+                arr[j] = arr[j+1]
+                arr[j+1] = temp
+                swapped = True
+        if not swapped:
+            break
+
+    return arr
+
+
+arr = createArr()
+sortedArr = bubbleSort(arr)
+print(sortedArr)

@@ -1,0 +1,158 @@
+class Node():
+    def __init__(self, value = None):
+        self.nextVal = None
+        self.value = value
+
+class LinkedList():
+    def __init__(self):
+        self.headVal = None
+
+    def listPrint(self):
+        printVal = self.headVal
+
+        while printVal is not None:
+            print(printVal.value)
+            printVal = printVal.nextVal
+
+    def insertAtStart(self, newVal):
+        #create new node value to be inserted in new node
+        newNode = Node(newVal)
+        #new node point to head node
+        newNode.nextVal = self.headVal
+        #now make new node head node
+        self.headVal = newNode
+
+    def insertAtEnd(self, newVal):
+        # create new node value to be inserted in new node
+        newNode = Node(newVal)
+
+        #tranverse to end of linked list
+        #if the end node is the start node return
+        while self.headVal is None:
+            self.headVal = newNode
+            return
+
+        #otherwise last points to current end node and becomes second node
+        last = self.headVal
+
+        #so long as last has a next address
+        while(last.nextVal):
+            last = last.nextVal # point to next address
+        last.nextVal = newNode # next address is the new last or new node
+
+    def insertAtMiddle(self, middleNode, newVal):
+        if middleNode is None:
+            print("The Node you mention was not found.")
+            return
+        newNode = Node(newVal)
+        newNode.nextVal = middleNode.nextVal
+        middleNode.nextVal = newNode
+
+    def removeNode(self, removeKey):
+        #we point to current head
+        headVal = self.headVal
+        #we check if head val cotains a value
+        #this removes from the start or end
+        if (headVal is not None):
+            #if so check if its the key to be removed
+            if (headVal.value == removeKey):
+                #if so set curretn headVal to next head val
+                #essentially we setting new head value since we will be deleting current head value
+                self.headVal = headVal.nextVal
+                #then clead node by setting it to none
+                headVal = None
+                return
+
+        #so long as headVal is not None enter loop
+        #this checks if we are removing anywhere in between
+        while (headVal is not None):
+            #if head val is the key we are removing enter if
+            if (headVal.value == removeKey):
+                break
+            #set headVal to prev
+            prev = headVal
+            #headVal point to next node since we removing current node
+            headVal = headVal.nextVal
+
+        #if head val is equals none return
+        if (headVal == None):
+            return
+
+        #else set prev next to headvals next
+        prev.nextVal = headVal.nextVal
+        headVal = None
+
+    def indexOf(self, findKey):
+        index = 0
+        current = self.headVal
+
+        while (current is not None):
+            if(current.value == findKey):
+                return index
+            current = current.nextVal
+            index = index + 1
+
+        return  -1
+
+    def containsKey(self, key):
+
+        return self.indexOf(key) != -1
+
+#create list
+list = LinkedList()
+
+#connect head val to first Node
+list.headVal = Node("Messi")
+
+l2 = Node("Neymar")
+l3 = Node("Mbappe")
+
+
+#connect head node to second node
+list.headVal.nextVal = l2
+#connect second node to third node
+l2.nextVal = l3
+
+#before insert
+print('Before Insert at Start: ')
+list.listPrint()
+
+#after insert
+print("\n")
+print("After Insert at Start: ")
+list.insertAtStart("Ramos")
+list.insertAtStart("Verratti")
+list.listPrint()
+
+#After insert at end
+print("\n")
+print("After Insert at end: ")
+list.insertAtEnd("Kimpembe")
+list.listPrint()
+
+#After insert at middle
+print("\n")
+print("After Insert at middle: ")
+list.insertAtMiddle(list.headVal.nextVal.nextVal, "Fabian")
+list.listPrint()
+
+#After remove
+print("\n")
+print("After Remove: ")
+list.removeNode("Fabian")
+list.listPrint()
+
+#index of
+print("\n")
+print(f'Index of: {list.indexOf("Messi")}')
+
+#contains
+print("\n")
+print(f'Contains: {list.containsKey("Neymar")}')
+
+#After removing First
+print("\n")
+print("After removing first and last: ")
+list.removeNode("Verratti")
+list.removeNode("Kimpembe")
+list.listPrint()

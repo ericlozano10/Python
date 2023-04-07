@@ -1,0 +1,93 @@
+class Queue():
+    def __init__(self):
+        self.size = 0
+        self.capacity = 5
+        self.arr = self.createQ(self.capacity)
+
+    def createQ(self, length):
+        return [None] * length
+
+    def qSize(self):
+        return self.size
+
+    def enqueu(self, elem):
+        if(self.size == self.capacity):
+            print(f'Queue is full. ')
+        else:
+            self.arr[self.size] = elem
+            self.size += 1
+
+    def dequeu(self):
+        element = None
+        if(self.size == 0):
+            print(f'Queue is empty. ')
+        else:
+            #reason for self.size - 1 as range is because once we have 1 item in array
+            #there is no way to look for the next item to shift since there isnt one hence size - 1 for the least element
+            for i in range(self.size - 1):
+                # print(f'size: {self.size}')
+                self.arr[i] = self.arr[i+1]
+            self.size -= 1
+
+    def front(self):
+        if (self.size == 0):
+            print(f'Queue is empty. ')
+        else:
+            return self.arr[0]
+
+    def rear(self):
+        if (self.size == 0):
+            print(f'Queue is empty. ')
+        else:
+            return self.arr[self.size -1]
+
+    def printQ(self):
+        for i in range(self.size):
+            print(self.arr[i])
+
+    def swap(self, pos1, pos2):
+        cust1 = 0
+        cust2 = 0
+        for i in range(self.size):
+            if(i == pos1):
+                cust1 = self.arr[i]
+            elif(i == pos2):
+                cust2 = self.arr[i]
+            if (cust1 != 0 and cust2 != 0):
+                temp = cust1
+                self.arr[pos1] = cust2
+                self.arr[pos2] = temp
+        return self.arr
+
+
+
+
+obj = Queue()
+obj.enqueu(10)
+obj.enqueu(20)
+obj.enqueu(30)
+obj.printQ()
+obj.dequeu()
+obj.printQ()
+f = obj.front()
+print(f'front: {f}')
+r = obj.rear()
+print(f'rear: {r}')
+obj.enqueu(40)
+s = obj.swap(1, 2)
+print(f'swapped: {s}')
+obj.enqueu(50)
+obj.enqueu(60)
+obj.enqueu(70)
+print(obj.qSize())
+obj.dequeu()
+obj.dequeu()
+obj.dequeu()
+obj.dequeu()
+obj.dequeu()
+obj.dequeu()
+obj.printQ()
+print(obj.qSize())
+
+
+

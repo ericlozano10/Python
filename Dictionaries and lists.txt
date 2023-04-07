@@ -1,0 +1,16 @@
+player = {
+    "Name": "Lionel Messi",
+    "Age": 35,
+    "Team": "PSG",
+    "Position": "RW",
+    "Starting": True
+}
+Teams = ["PSG", "Bayern", "Barcelona", "AC Milan", "Juventus"]
+for i in player:
+    for j in range(len(Teams)):
+        if(player[i] == Teams[j]):
+            print(f'Player Info: {player["Name"]}, {player["Age"]}, {player["Team"]}, {player["Position"]}, {player["Starting"]}')
+        if(player[i] == True or player[i] == False):
+            print("Ballon D' Or: ", end='')
+            print(player.get("Ballon D'or", 7))
+            break

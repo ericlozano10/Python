@@ -1,0 +1,10 @@
+numbers = [1,5,4,5,8,6,3,7,9]
+num2 = []
+for i in range(len(numbers)):
+    s = numbers.pop()
+    if(s in num2):
+        num2.remove(s)
+    else:
+        num2.insert(i, s)
+num2.sort()
+print(num2)
